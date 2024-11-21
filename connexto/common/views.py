@@ -4,14 +4,14 @@ from django.views.generic import ListView
 from pyperclip import copy
 from connexto.common.forms import CommentForm, SearchForm
 from connexto.common.models import Like
-from connexto.photos.models import Photo
+from connexto.photos.models import CarPhoto
 
 
 class HomePageView(ListView):
-    model = Photo
+    model = CarPhoto
     template_name = 'templates/common/home-page.html'
-    context_object_name = 'all_photos'  # by default is object_list and photos
-    paginate_by = 1
+    context_object_name = 'all_photos'
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,7 +61,7 @@ def share_functionality(request, photo_id: int):
 @login_required
 def comment_functionality(request, photo_id: int):
     if request.POST:
-        photo = Photo.objects.get(pk=photo_id)
+        photo = CarPhoto.objects.get(pk=photo_id)
         comment_form = CommentForm(request.POST)
 
         if comment_form.is_valid():

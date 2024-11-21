@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from connexto.accounts.forms import AppUserCreationForm, AppUserChangeForm
 
-
 UserModel = get_user_model()
 
 
